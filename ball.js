@@ -8,8 +8,19 @@ var Engine = Matter.Engine,
 // create an engine
 var engine = Engine.create();
 
-// create a renderer
+// Smartphone or PC
 var myCanvas = document.getElementById('world');
+var window_w;
+var window_h;
+if (navigator.userAgent.match(/(iPhone|iPod|Android.*Mobile)/i)) {
+    window_w = window.innerWidth;
+    window_h = window.innerHeight;
+} else {
+    window_w = myCanvas.clientWidth;
+    window_h = myCanvas.clientHeight;
+}
+
+// create a renderer
 console.log(myCanvas.clientHeight, myCanvas.clientWidth);
 var render = Render.create({
     canvas: myCanvas,
@@ -17,8 +28,8 @@ var render = Render.create({
     engine: engine,
     options: {
         element: document.getElementById('app'),
-        width: myCanvas.clientWidth,
-        height: myCanvas.clientHeight,
+        width: window_w,
+        height: window_h,
 //        background: 'transparent',
 //        wireframes: false,
 //        showAngleIndicator: false
